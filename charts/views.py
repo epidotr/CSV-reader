@@ -25,8 +25,13 @@ def fetch_prices():
 
 def make_pie_chart(coins, prices):
     fig, ax = plt.subplots(figsize=(5, 5))
-    ax.pie(prices, labels=coins, autopct="%1.1f%%", startangle=90)
+    def autopct_fmt(pct):
+        return f"{pct:.1f}%" if pct >= 3 else ""
+
+    wedges, _, _ = ax.pie(prices, autopct=autopct_fmt, pctdistance=0.75, startangle=90)
     ax.set_title("Price Share (USD)")
+    ax.legend(wedges, coins, title="Coin", loc="center left", bbox_to_anchor=(1, 0, 0.5, 1))
+    fig.tight_layout()
 
     buf = io.BytesIO()
     fig.savefig(buf, format="png")
