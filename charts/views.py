@@ -36,9 +36,16 @@ def make_pie_chart(coins, prices):
 
 def index(request):
     chart_image = None
+    error = None
 
     if "fetch" in request.GET:
-        coins, prices = fetch_prices()
-        chart_image = make_pie_chart(coins, prices)
+        try:
+            coins, prices = fetch_prices()
+            chart_image = make_pie_chart(coins, prices)
+        except requests.exceptions.RequestException:
+            error = "Couldn't fetch prices right now. Try again in a moment."
 
-    return render(request, "charts/index.html", {"chart_image": chart_image})
+    return render(request, "charts/index.html", {
+        "chart_image": chart_image,
+        "error": error,
+    })
