@@ -32,5 +32,9 @@
     {% if chart_image %}
         <img src="data:image/png;base64,{{ chart_image }}" alt="Price pie chart">
     {% endif %}
+
+    {% if error %}
+        <p style="color: #b00020;">{{ error }}</p>
+    {% endif %}
 </body>
 </html>

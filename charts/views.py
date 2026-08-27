@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 from django.shortcuts import render
 
-COINS = "bitcoin,ethereum"
+COINS = "bitcoin,ethereum,solana,dogecoin"
 CURRENCY = "usd"
 URL = f"https://api.coingecko.com/api/v3/simple/price?ids={COINS}&vs_currencies={CURRENCY}"
 
