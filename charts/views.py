@@ -1,5 +1,6 @@
 import io
 import base64
+from datetime import datetime
 
 import requests
 import matplotlib
@@ -36,16 +37,19 @@ def make_pie_chart(coins, prices):
 
 def index(request):
     chart_image = None
+    fetched_at = None
     error = None
 
     if "fetch" in request.GET:
         try:
             coins, prices = fetch_prices()
             chart_image = make_pie_chart(coins, prices)
+            fetched_at = datetime.now().strftime("%b %d, %Y %I:%M %p")
         except requests.exceptions.RequestException:
             error = "Couldn't fetch prices right now. Try again in a moment."
 
     return render(request, "charts/index.html", {
         "chart_image": chart_image,
         "error": error,
+        "fetched_at": fetched_at,
     })

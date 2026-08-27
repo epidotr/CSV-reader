@@ -31,6 +31,7 @@
 
     {% if chart_image %}
         <img src="data:image/png;base64,{{ chart_image }}" alt="Price pie chart">
+        <p style="color: #666; font-size: 0.85rem;">Last updated: {{ fetched_at }}</p>
     {% endif %}
 
     {% if error %}
