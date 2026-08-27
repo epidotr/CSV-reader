@@ -5,20 +5,49 @@
     <title>Crypto Price Viz</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            max-width: 500px;
+            font-family: -apple-system, "Segoe UI", Arial, sans-serif;
+            max-width: 480px;
             margin: 60px auto;
             text-align: center;
             color: #222;
+            background: #fafafa;
+        }
+        h1 {
+            font-size: 1.6rem;
+            margin-bottom: 30px;
         }
         button {
             font-size: 1rem;
-            padding: 10px 20px;
+            padding: 10px 24px;
             cursor: pointer;
+            background: #2b6cb0;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            transition: background 0.15s ease;
         }
-        img {
+        button:hover {
+            background: #235a94;
+        }
+        .card {
             margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        }
+        .card img {
             max-width: 100%;
+            border-radius: 6px;
+        }
+        .timestamp {
+            color: #888;
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+        .error {
+            color: #b00020;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -30,12 +59,14 @@
     </form>
 
     {% if chart_image %}
-        <img src="data:image/png;base64,{{ chart_image }}" alt="Price pie chart">
-        <p style="color: #666; font-size: 0.85rem;">Last updated: {{ fetched_at }}</p>
+        <div class="card">
+            <img src="data:image/png;base64,{{ chart_image }}" alt="Price pie chart">
+            <p class="timestamp">Last updated: {{ fetched_at }}</p>
+        </div>
     {% endif %}
-
+        
     {% if error %}
-        <p style="color: #b00020;">{{ error }}</p>
+        <p class="error">{{ error }}</p>
     {% endif %}
 </body>
 </html>
