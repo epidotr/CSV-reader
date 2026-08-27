@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crypto Price Viz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 60px auto;
+            text-align: center;
+            color: #222;
+        }
+        button {
+            font-size: 1rem;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        img {
+            margin-top: 30px;
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Crypto Prices</h1>
+
+    <form method="get">
+        <button type="submit" name="fetch" value="1">Fetch Data</button>
+    </form>
+
+    {% if chart_image %}
+        <img src="data:image/png;base64,{{ chart_image }}" alt="Price pie chart">
+    {% endif %}
+</body>
+</html>
